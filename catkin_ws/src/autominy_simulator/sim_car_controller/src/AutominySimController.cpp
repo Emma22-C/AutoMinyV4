@@ -226,13 +226,13 @@ namespace autominy_sim_control
 
             // Set steering
             error = this->left_steer_cmd - steer_l_pos;
-            command = std::clamp(steer_l_pos + pids[4]->computeCommand(error, (time - last_publish)), -0.57, 0.57);
+            command = std::clamp(steer_l_pos + pids[4]->compute_command(error, (time - last_publish)), -0.57, 0.57);
             if (!this->joints[4].effort.get().set_value(command)) {
                 RCLCPP_ERROR(get_node()->get_logger(), "Could not set value for joint %s", this->joint_names[4].c_str());
             }
 
             error = this->right_steer_cmd - steer_r_pos;
-            command = std::clamp(steer_r_pos + pids[5]->computeCommand(error, (time - last_publish)), -0.57, 0.57);
+            command = std::clamp(steer_r_pos + pids[5]->compute_command(error, (time - last_publish)), -0.57, 0.57);
             if (!this->joints[5].effort.get().set_value(command)) {
                 RCLCPP_ERROR(get_node()->get_logger(), "Could not set value for joint %s", this->joint_names[5].c_str());
             }
