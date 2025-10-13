@@ -149,7 +149,7 @@ namespace autominy_sim_control
 
             // Node handle to PID gains
             // Init PID gains from ROS parameter server
-            this->pids[i] = std::make_shared<control_toolbox::PidROS>(get_node(), joint_names[i]);
+            this->pids[i] = std::make_shared<control_toolbox::PidROS>(get_node(), joint_names[i], "");
             if(!this->pids[i]->initPid()) {
                 RCLCPP_ERROR(get_node()->get_logger(), "Could not initialize PID %s", joint_names[i].c_str());
                 return CallbackReturn::ERROR;
